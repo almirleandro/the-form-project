@@ -12,7 +12,7 @@ function NotRegistered(props) {
   function regSubmit(e) {
     e.preventDefault();
 
-    fetch('http://localhost:3002/register', {
+    fetch('https://shielded-ocean-70515.herokuapp.com/register', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -36,7 +36,7 @@ function NotRegistered(props) {
   function logSubmit(e) {
     e.preventDefault();
 
-    fetch('http://localhost:3002/signin', {
+    fetch('https://shielded-ocean-70515.herokuapp.com/signin', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

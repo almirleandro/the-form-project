@@ -8,7 +8,7 @@ function Registered(props) {
 
   const searchMovie = async () => {
     try {
-      const res = await fetch('http://localhost:3002/api/search', {
+      const res = await fetch('https://shielded-ocean-70515.herokuapp.com/api/search', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body:JSON.stringify({
