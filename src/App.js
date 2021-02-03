@@ -8,7 +8,6 @@ function App() {
 
   const [canEnter, setCanEnter] = useState(false);
 
-  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [joined, setJoined] = useState('');
@@ -19,16 +18,16 @@ function App() {
       <div className='profile'>
         <p><b>Name:</b> {name}</p>
         <p><b>Email:</b> {email}</p>
-        <p><b>Joined:</b> {joined.slice(0, 10)}</p>
+        <p><b>Joined:</b> {joined}</p>
       </div>
     )
-  }, [email]);
+  }, [joined, email, name]);
 
   function loadUser(data) {
-    setId(data.id);
     setName(data.name);
     setEmail(data.email);
-    setJoined(data.joined);
+    const date = data.joined.slice(0, 10);
+    setJoined(date);
   }
   
   return (

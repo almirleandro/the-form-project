@@ -23,13 +23,14 @@ function NotRegistered(props) {
     })
       .then(response => response.json())
       .then(user => {
-        if (user) {
+        if (user !== "Unable to register") {
           props.loadUser(user);
           props.setCanEnter(true);
         } else {
-          alert('Try again');
+          alert('Unable to register. Try again.');
         }
       })
+      .catch(err => console.error(err))
   }
 
   function logSubmit(e) {
@@ -45,13 +46,14 @@ function NotRegistered(props) {
     })
       .then(response => response.json())
       .then(user => {
-        if (user) {
+        if (user !== "Wrong credentials") {
           props.loadUser(user);
           props.setCanEnter(true);
         } else {
           alert('Wrong email or password');
         }
       })
+      .catch(err => console.error(err))
   }
   
 
@@ -59,21 +61,22 @@ function NotRegistered(props) {
     <div className="NotRegistered">
       <div className='formBox'>
         <form onSubmit={e => regSubmit(e)}>
-          <h3>Register</h3><br/><input placeholder="name" onChange={e => setRegName(e.target.value)} /><br/>
-          <input placeholder="email" onChange={e => setRegEmail(e.target.value)} /><br/>
-          <input type='password' placeholder="password" onChange={e => setRegPassword(e.target.value)} /><br/>
+          <h3>Register</h3><br/>
+          <input placeholder="name" onChange={e => setRegName(e.target.value)} required /><br/>
+          <input type='email' placeholder="email" onChange={e => setRegEmail(e.target.value)} required /><br/>
+          <input type='password' placeholder="password" onChange={e => setRegPassword(e.target.value)} required /><br/>
           <button>Submit</button>
         </form>
       </div>
       <div className='formBox'>
         <form onSubmit={e => logSubmit(e)}>
           <h3>Log in</h3><br/>
-          <input placeholder="email" onChange={e => setEmail(e.target.value)} /><br/>
-          <input type='password' placeholder="password" onChange={e => setPassword(e.target.value)} /><br/>
+          <input placeholder="email" onChange={e => setEmail(e.target.value)} required /><br/>
+          <input type='password' placeholder="password" onChange={e => setPassword(e.target.value)} required /><br/>
           <button>Submit</button>
         </form>
       </div>
-      <button onClick={() => props.setCanEnter(true)}>magic</button>
+      <button onClick={() => props.setCanEnter(true)}>Skip Signing In</button>
     </div>
   );
 }

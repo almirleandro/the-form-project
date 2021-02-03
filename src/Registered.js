@@ -7,12 +7,16 @@ function Registered(props) {
   const [movieList, setMovieList] = useState([])
 
   const searchMovie = async () => {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=53d1ed1dbd54c7022b78b3f3b8a42342&language=pt-BR&query=${query}&page=1&include_adult=false`;
-    
     try {
-      const res = await fetch(url);
+      const res = await fetch('http://localhost:3002/api/search', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({
+          q: query
+        })
+      });
       const data  = await res.json();
-      if (data.results) setMovieArray(data.results);
+      if (data) setMovieArray(data);
     } catch(err) {
       console.error(err);
     }
@@ -30,10 +34,10 @@ function Registered(props) {
       <h1>Great Movie Search</h1>
       <input className='queryInput' placeholder='Search a movie' onChange={e => setQuery(e.target.value)} />
       <button onClick={() => searchMovie()}>Submit</button>
-      <button onClick={() => props.setCanEnter(false)}>magic</button>
       <div className='movieGrid'>
         {movieList}
       </div>
+      <button style={{marginTop: '30px'}} onClick={() => props.setCanEnter(false)}>Sign Out</button>
     </div>
   );
 }
