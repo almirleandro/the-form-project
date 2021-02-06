@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-function NotRegistered(props) {
+interface User {
+  name: string,
+  email: string,
+  joined: string
+}
+
+function NotRegistered(props: {setCanEnter: React.Dispatch<React.SetStateAction<boolean>>, loadUser: (data: User) => void}) {
 
   const [regName, setRegName] = useState('');
   const [regEmail, setRegEmail] = useState('');
@@ -9,7 +15,7 @@ function NotRegistered(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function regSubmit(e) {
+  function regSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     fetch('https://shielded-ocean-70515.herokuapp.com/register', {
@@ -33,7 +39,7 @@ function NotRegistered(props) {
       .catch(err => console.error(err))
   }
 
-  function logSubmit(e) {
+  function logSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     fetch('https://shielded-ocean-70515.herokuapp.com/signin', {
@@ -62,17 +68,17 @@ function NotRegistered(props) {
       <div className='formBox'>
         <form onSubmit={e => regSubmit(e)}>
           <h3>Register</h3><br/>
-          <input placeholder="name" onChange={e => setRegName(e.target.value)} required /><br/>
-          <input type='email' placeholder="email" onChange={e => setRegEmail(e.target.value)} required /><br/>
-          <input type='password' placeholder="password" onChange={e => setRegPassword(e.target.value)} required /><br/>
+          <input placeholder="name" onChange={e => setRegName(e.target.value)}  aria-label='name'required /><br/>
+          <input type='email' placeholder="email" onChange={e => setRegEmail(e.target.value)}  aria-label='email'required /><br/>
+          <input type='password' placeholder="password" onChange={e => setRegPassword(e.target.value)}  aria-label='password'required /><br/>
           <button>Submit</button>
         </form>
       </div>
       <div className='formBox'>
         <form onSubmit={e => logSubmit(e)}>
           <h3>Log in</h3><br/>
-          <input placeholder="email" onChange={e => setEmail(e.target.value)} required /><br/>
-          <input type='password' placeholder="password" onChange={e => setPassword(e.target.value)} required /><br/>
+          <input placeholder="email" onChange={e => setEmail(e.target.value)}  aria-label='email'required /><br/>
+          <input type='password' placeholder="password" onChange={e => setPassword(e.target.value)}  aria-label='password'required /><br/>
           <button>Submit</button>
         </form>
       </div>

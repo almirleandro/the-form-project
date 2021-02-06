@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-import Registered from './Registered'
-import NotRegistered from './NotRegistered'
+import Registered from './Registered';
+import NotRegistered from './NotRegistered';
+
+interface User {
+  name: string,
+  email: string,
+  joined: string
+}
 
 function App() {
 
-  const [canEnter, setCanEnter] = useState(false);
+  const [canEnter, setCanEnter] = useState<boolean>(false);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [joined, setJoined] = useState('');
-  const [profile, setProfile] = useState()
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [joined, setJoined] = useState<string>('');
+  const [profile, setProfile] = useState<JSX.Element>();
 
   useEffect(() => {
     setProfile(
@@ -23,7 +29,7 @@ function App() {
     )
   }, [joined, email, name]);
 
-  function loadUser(data) {
+  function loadUser(data: User): void {
     setName(data.name);
     setEmail(data.email);
     const date = data.joined.slice(0, 10);

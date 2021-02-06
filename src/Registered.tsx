@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-function Registered(props) {
+function Registered(props: {profile: JSX.Element | undefined, setCanEnter: React.Dispatch<React.SetStateAction<boolean>>}) {
 
-  const [query, setQuery] = useState('');
-  const [movieArray, setMovieArray] = useState([]);
-  const [movieList, setMovieList] = useState([])
+  const [query, setQuery] = useState<string>('');
+  const [movieArray, setMovieArray] = useState<any[]>([]);
+  const [movieList, setMovieList] = useState<any[]>([])
 
   const searchMovie = async () => {
     try {
