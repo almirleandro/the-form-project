@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# The Form Project
+
+A simple project to test and learn new features from time to time.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
