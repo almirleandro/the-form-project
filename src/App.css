@@ -25,6 +25,20 @@
 
 .movieGrid {
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.movieBlock {
+  display: flex;
+  margin-bottom: 40px;
+  margin-left: 40px;
+}
+
+.text {
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 1.2rem;
 }
 
 button {
